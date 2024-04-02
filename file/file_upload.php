@@ -47,6 +47,6 @@ if(isset($_FILES['image'])){
 
         </form>
     </div>
-
+ 
 </body>
 </html>
