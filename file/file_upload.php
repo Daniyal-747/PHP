@@ -6,15 +6,30 @@ echo "<pre>";
 print_r($_FILES);
 echo "</pre>";
 
-if(isset($_FILES['image'])){
+if(isset($_POST['submit'])){
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $image = $_FILES['image']['name'];
 
-    $file_name = $_FILES['image']['name'];
-    $file_type = $_FILES['image']['type'];
-    $file_size = $_FILES['image']['size'];
-    $file_tmp = $_FILES['image']['tmp_name'];
+    $sql = "insert into employee(name , email, password , image) values('$username' , '$email' , '$password' , '$image')";
+    $result = mysqli_query($conn , $sql);
 
-    move_uploaded_file($file_tmp , "images/" .$file_name);
+    if($result == true){
+        echo "<br> Your record has been inserted";
+    }
+
+    if(isset($_FILES['image'])){
+
+        $file_name = $_FILES['image']['name'];
+        $file_type = $_FILES['image']['type'];
+        $file_size = $_FILES['image']['size'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+    
+        move_uploaded_file($file_tmp , "images/" .$file_name);
+    }
 }
+
 
 ?>
 
@@ -38,6 +53,22 @@ if(isset($_FILES['image'])){
     
     <div class="container">
         <form action="" method="POST" enctype= "multipart/form-data">
+
+            <div class="form-grp">
+                <label for="">Username</label><br>
+                <input type="text" name="username" class="form-control" id="">
+            </div>
+
+            <div class="form-grp">
+                <label for="">Email</label><br>
+                <input type="text" name="email" class="form-control" id=""><br>
+            </div>
+
+            <div class="form-grp">
+                <label for="">Password</label><br>
+                <input type="text" name="password" class="form-control" id=""><br>
+            </div>
+
             <div class="form-grp">
                 <label for="">Select Your Image</label><br>
                 <input type="file" name="image" class="form-control" id=""><br>
