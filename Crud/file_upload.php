@@ -2,10 +2,6 @@
 
 include("../config/one.php");
 
-echo "<pre>";
-print_r($_FILES);
-echo "</pre>";
-
 if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -52,7 +48,7 @@ if(isset($_POST['submit'])){
 <body>
     
     <div class="container">
-        <form action="" method="POST" enctype= "multipart/form-data">
+        <form action="" method="POST" enctype= "multipart/form-data">  
 
             <div class="form-grp">
                 <label for="">Username</label><br>
@@ -79,5 +75,17 @@ if(isset($_POST['submit'])){
         </form>
     </div>
  
+    <?php
+
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+
+    ?>
+
 </body>
 </html>
